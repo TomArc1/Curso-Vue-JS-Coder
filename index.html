@@ -7,49 +7,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,700;1,200;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <!-- cdn de tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Estilos propios que tal vez no use  -->
     <link rel="stylesheet" href="style.css">
     <title>Curso Vue Coderhouse</title>
 </head>
-<body>
-
-    <div id="app">
-        <div class="counter-container">
-            <p>Cantidad:</p>
-            <div class="counter-inner">
-                <button @click="restar" class="counter-button">
-                    <span>-</span>
-                </button>
-                <input type="text" name="number" :placeholder="cantidad">
-                <button @click="sumar" class="counter-button">
-                    <span>+</span>
-                </button>
+<body class="bg-[#2b2b2b]">
+    <div id="app" class="pt-10 pl-10">
+        <h1 class="text-[2rem] text-white">{{ title }}</h1>
+        <h2 class="text-[1.5rem] mb-10 border-b-[2px] inline-block text-white">{{ subtitle }}</h2>
+        <div class="flex items-start justify-evenly">
+            <div class="flex flex-col items-center">
+                <button @click="openClose(1)" class="inline-block border border-[#c4c4c4] py-5 px-10 mb-10 rounded-[2rem] text-white bg-[#3b3b3b]">Generación 1</button>
+                <poke-list v-show="(this.open == 1)" :generacion="generacion1"></poke-list>
             </div>
+            <div class="flex flex-col items-center">
+                <button @click="openClose(2)" class="inline-block border border-[#c4c4c4] py-5 px-10 mb-10 rounded-[2rem] text-white bg-[#3b3b3b]">Generación 2</button>
+                <poke-list v-show="(this.open == 2)" :generacion="generacion2"></poke-list>
+            </div>
+            <div class="flex flex-col items-center">
+                <button @click="openClose(3)" class="inline-block border border-[#c4c4c4] py-5 px-10 mb-10 rounded-[2rem] text-white bg-[#3b3b3b]">Generación 3</button>
+                <poke-list v-show="(this.open == 3)" :generacion="generacion3"></poke-list>
+            </div>
+
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
-    <script>
-        let app = new Vue({
-            el:'#app',
-            data:{
-                cantidad: 0,
-            },
-            methods:{
-                sumar() {
-                    console.log('jashdjashdg')
-                    this.cantidad = this.cantidad + 1;
-                    return this.cantidad
-                },
-                restar() {
-                    if(this.cantidad >= 1) {
-                        this.cantidad = this.cantidad - 1;
-                        return this.cantidad
-                    }
-                },
-            },
-        })
-    </script>
-
+    <script src="poke-list.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
